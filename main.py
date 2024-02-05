@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 import cvzone
 
-videoPath = 'example1.mp4'
+# videoPath = 'example1.mp4'
+videoPath = 0
 configPath = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 modelPath = 'frozen_inference_graph.pb'
 classesPath='coco.names'
@@ -42,8 +43,10 @@ while True:
             print(bbox,labelsID,conf)
             x,y,w,h = bbox
 
-            cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,255),2)
-            cvzone.putTextRect(img,f'{label} {round(conf,2)}',(x,y-10),scale=1,thickness=2)
+            cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),3)
+            cvzone.putTextRect(img,f'{label} {round(conf,2)}',(x,y-10),colorR=(255,0,0),scale=1,thickness=2)
 
     cv2.imshow('Imagem',img)
-    cv2.waitKey(1)
+
+    if cv2.waitKey(1)==27:
+        break
